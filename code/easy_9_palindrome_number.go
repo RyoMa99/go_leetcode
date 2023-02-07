@@ -1,10 +1,5 @@
 package code
 
-import (
-	"strconv"
-	"strings"
-)
-
 /*
  * @lc app=leetcode id=9 lang=golang
  *
@@ -18,14 +13,17 @@ func isPalindrome(x int) bool {
 	if x < 0 {
 		return false
 	}
-	var r string
-	s := strings.Split(strconv.Itoa(x), "")
-	for i := len(s) - 1; i >= 0; i-- {
-		r += s[i]
-	}
-	num, _ := strconv.Atoi(r)
 
-	return x == num
+	// https://leetcode.com/problems/palindrome-number/solutions/981758/go-8ms-solution/?orderBy=most_votes&languageTags=golang
+	origin := x
+	ans := 0
+	for x != 0 {
+		// 剰余算を上手く使って数列を逆にする
+		ans = ans*10 + x%10
+		x /= 10
+	}
+
+	return origin == ans
 }
 
 // @lc code=end
