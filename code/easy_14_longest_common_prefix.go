@@ -8,35 +8,15 @@ package code
 
 // @lc code=start
 func longestCommonPrefix(strs []string) string {
-
-	ans := make([]rune, 0)
-
-	for i := 0; i <= 200; i++ {
-		if i == len(strs[0]) {
-			return string(ans)
+	// https://leetcode.com/problems/longest-common-prefix/solutions/1517792/simple-go-solution/?orderBy=most_votes&languageTags=golang
+	ans := strs[0]
+	for _, s := range strs {
+		i := 0
+		for ; i < len(s) && i < len(ans) && ans[i] == s[i]; i++ {
 		}
-
-		tmp := []rune(strs[0])[i]
-		f := true
-		for j := 1; j < len(strs); j++ {
-			if i == len(strs[j]) {
-				return string(ans)
-			}
-
-			if tmp != []rune(strs[j])[i] {
-				f = false
-			}
-		}
-
-		if f {
-			ans = append(ans, tmp)
-		} else {
-			break
-		}
-
+		ans = ans[:i]
 	}
-
-	return string(ans)
+	return ans
 }
 
 // @lc code=end
