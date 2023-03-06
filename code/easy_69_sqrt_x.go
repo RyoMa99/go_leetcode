@@ -8,9 +8,20 @@ package code
 
 // @lc code=start
 func mySqrt(x int) int {
-	for ans := 0; ; ans++ {
-		if ans*ans > x {
-			return ans - 1
+	if x == 1 {
+		return 1
+	}
+
+	s, l := 0, x
+	for {
+		m := (s + l) / 2
+		if m*m > x {
+			l = m
+		} else {
+			if (m+1)*(m+1) > x {
+				return m
+			}
+			s = m
 		}
 	}
 }
