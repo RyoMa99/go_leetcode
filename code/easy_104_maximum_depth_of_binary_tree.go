@@ -16,18 +16,12 @@ package code
  * }
  */
 
+// https://leetcode.com/problems/maximum-depth-of-binary-tree/solutions/854002/recursive-and-iterative-using-golang/?orderBy=most_votes&languageTags=golang
 func maxDepth(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}
-	return max(measureDepth(root.Left, 1), measureDepth(root.Right, 1))
-}
-
-func measureDepth(root *TreeNode, depth int) int {
-	if root == nil {
-		return depth
-	}
-	return max(measureDepth(root.Left, depth+1), measureDepth(root.Right, depth+1))
+	return max(maxDepth(root.Left), maxDepth(root.Right)) + 1
 }
 
 func max(a, b int) int {
