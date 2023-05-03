@@ -1,5 +1,7 @@
 package code
 
+import "sort"
+
 /*
  * @lc app=leetcode id=169 lang=golang
  *
@@ -7,20 +9,10 @@ package code
  */
 
 // @lc code=start
+// https://leetcode.com/problems/majority-element/solutions/457064/majority-element/?orderBy=most_votes&languageTags=golang
 func majorityElement(nums []int) int {
-	ans := make(map[int]int, len(nums))
-	for _, n := range nums {
-		ans[n]++
-	}
-
-	max_i, max_c := 0, 0
-	for i, n := range ans {
-		if n > max_c {
-			max_i = i
-			max_c = n
-		}
-	}
-	return max_i
+	sort.Ints(nums)
+	return nums[len(nums)/2]
 }
 
 // @lc code=end
