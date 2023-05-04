@@ -1,7 +1,5 @@
 package code
 
-import "math"
-
 /*
  * @lc app=leetcode id=171 lang=golang
  *
@@ -9,13 +7,16 @@ import "math"
  */
 
 // @lc code=start
+// https://leetcode.com/problems/excel-sheet-column-number/solutions/654014/very-simple-5-line-solution/?orderBy=most_votes&languageTags=golang
 func titleToNumber(columnTitle string) int {
-	ans := 0
-	chars := []rune(columnTitle)
-	for i := len(chars) - 1; i >= 0; i-- {
-		ans += (int(chars[i]-'A') + 1) * int(math.Pow(26, float64(len(chars)-1-i)))
+	col := 0
+
+	for _, char := range columnTitle {
+		col *= 26
+		col += int(char-'A') + 1
 	}
-	return ans
+
+	return col
 }
 
 // @lc code=end
